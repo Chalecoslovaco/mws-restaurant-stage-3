@@ -272,8 +272,8 @@ nav h1 a {
     flex-direction: row;
   }
 
-  #restaurant-container, #reviews-container {
-    width: 50%;
+  #restaurant-container, #reviews-container #submit-review{
+    width: 33%;
   }
 
   .filter-options select {

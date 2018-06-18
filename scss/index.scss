@@ -201,16 +201,6 @@ nav h1 a {
     justify-content: center;
   }
 
-  .restaurant-pack {
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
-  }
-
-  #restaurant-container, #reviews-container {
-    width: 50%;
-  }
-
   .filter-options select {
     width: 250px;
   }

@@ -48,6 +48,16 @@
       </section>
       <!-- end restaurant -->
       <!-- Beginning reviews -->
+      <section class="submit-review">
+        <div class="submit-review-heading">Submit your review!</div>
+          <form action="" method="post">
+            <label for="name"><span>Name <span class="required">*</span></span><input type="text" class="input-field" name="name" value="" /></label>
+            <label for="date"><span>Date <span class="required">*</span></span><input type="date" class="input-field" name="date" value="" /></label>
+            <label for="rate"><span>Rate <span class="required">*</span></span><input type="number" min="1" max="5" class="input-field" name="rate" value="" /></label>
+            <label for="comment"><span>Comment <span class="required">*</span></span><textarea name="comment" class="textarea-field"></textarea></label>
+            <label><span>&nbsp;</span><input type="submit" value="Submit" /></label>
+          </form>
+      </section>
       <section id="reviews-container">
         <ul id="reviews-list"></ul>
       </section>
@@ -64,10 +74,10 @@
 
   <!-- Beginning scripts -->
   <!-- Database helpers -->
-  <script type="text/javascript" src="js/dbhelper.js" async></script>
-  <script type="application/javascript" charset="utf-8" src="/js/idb.js" async></script>
+  <script type="text/javascript" src="js/dbhelper.js"></script>
+  <script type="application/javascript" charset="utf-8" src="/js/idb.js"></script>
   <!-- Main javascript file -->
-  <script type="text/javascript" src="js/restaurant_info.js" async></script>
+  <script type="text/javascript" src="js/restaurant_info.js"></script>
   <script src="js/lazysizes.min.js" async=""></script>
   <!--<script type="application/javascript" charset="utf-8" src="/js/intersection-observer.js"></script>-->
   <!-- Google Maps -->
