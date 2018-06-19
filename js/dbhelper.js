@@ -19,6 +19,11 @@ class DBHelper {
     return `http://localhost:${port}/restaurants`;
   }
 
+  static get REVIEWS_URL() {
+    const port = 1337; // Change this to your server port
+    return `http://localhost:${port}/reviews/`;
+  }
+
   static openDatabase() {
     if(!navigator.serviceWorker){
       return Promise.resolve();
@@ -223,6 +228,16 @@ class DBHelper {
       animation: google.maps.Animation.DROP}
     );
     return marker;
+  }
+
+  static addReview(review) {
+    fetch(DBHelper.REVIEWS_URL, {
+      method: 'post',
+      headers: {
+        'Content-Type' : 'application/json'
+      },
+      body: JSON.stringify(review)
+    });
   }
 
 }
