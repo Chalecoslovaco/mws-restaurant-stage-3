@@ -195,4 +195,11 @@ submitReview =  () => {
   }
 
   DBHelper.addReview(review);
+
+}
+
+clearForm = () => {
+  document.querySelector('#name').value = '';
+  document.querySelector('#rate').value = '';
+  document.querySelector('#comment').value = '';
 }
