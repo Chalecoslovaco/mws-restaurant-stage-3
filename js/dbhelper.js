@@ -240,4 +240,17 @@ class DBHelper {
     }).then(clearForm);
   }
 
+  static fetchReviews(id){
+    fetch(DBHelper.REVIEWS_URL)
+          .then(function(response){
+            return response.json();
+        }).then(reviews=> {
+          const reviewsById = reviews.filter(r => r.restaurant_id == id);
+          if(reviewsById)
+            fillReviewsHTML(reviewsById);
+          else
+            fillReviewsHTML(null);
+        });
+  }
+
 }
