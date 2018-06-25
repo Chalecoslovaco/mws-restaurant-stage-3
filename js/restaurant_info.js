@@ -181,23 +181,6 @@ getParameterByName = (name, url) => {
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 };
 
-submitReview =  () => {
-  const id = getParameterByName('id');
-  const name = document.querySelector('#name').value;
-  const rate = document.querySelector('#rate').value;
-  const comment = document.querySelector('#comment').value;
-
-  const review = {
-    "restaurant_id": id,
-    "name": name,
-    "rating": rate,
-    "comments": comment
-  }
-
-  DBHelper.addReview(review);
-
-}
-
 clearForm = () => {
   document.querySelector('#name').value = '';
   document.querySelector('#rate').value = '';

@@ -237,7 +237,7 @@ class DBHelper {
         'Content-Type' : 'application/json'
       },
       body: JSON.stringify(review)
-    }).then(clearForm);
+    });
   }
 
   static fetchReviews(id){

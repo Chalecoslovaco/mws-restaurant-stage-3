@@ -54,7 +54,7 @@
             <!--<label for="date"><span>Date <span class="required">*</span></span><input type="date" class="input-field" name="date" value="" required /></label>-->
             <label for="rate"><span>Rate <span class="required">*</span></span><input type="number" min="1" max="5" class="input-field" id="rate" name="rate" value="" required /></label>
             <label for="comment"><span>Comment <span class="required">*</span></span><textarea id="comment" name="comment" class="textarea-field" required></textarea></label>
-            <label><span>&nbsp;</span><input type="submit" value="Submit" onclick="submitReview()"/></label>
+            <label><span>&nbsp;</span><input type="submit" value="Submit" id="submitButton" name="submitButton" /></label>
       </section>
       <section id="reviews-container">
         <ul id="reviews-list"></ul>
@@ -76,10 +76,46 @@
   <script type="application/javascript" charset="utf-8" src="/js/idb.js"></script>
   <!-- Main javascript file -->
   <script type="text/javascript" src="js/restaurant_info.js"></script>
+  <script type="text/javascript" src="js/reviewsStore.js"></script>
   <script src="js/lazysizes.min.js" async=""></script>
   <!--<script type="application/javascript" charset="utf-8" src="/js/intersection-observer.js"></script>-->
   <!-- Google Maps -->
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoUvaPbhcUz0jXA2-4QvNV20VM3q0J6Gg&libraries=places&callback=initMap"></script>
+  <script>
+    if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+      navigator.serviceWorker.ready.then(function(swRegistration) {
+        if('sync' in swRegistration){
+          let id = getParameterByName('id');
+          let name = document.querySelector('#name');
+          let rate = document.querySelector('#rate');
+          let comment = document.querySelector('#comment');
+          let submitButton = document.querySelector('#submitButton');
+        
+          submitButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            let rev = {
+              "restaurant_id": id,
+              "name": name.value,
+              "rating": rate.value,
+              "comments": comment.value
+            }
+        
+            reviewsStore.pending('readwrite').then(function(pending) {
+              return pending.put(rev);
+            }).then(function() {
+              clearForm();
+              return swRegistration.sync.register('pending');
+            }).catch(function(err) {
+              console.log(err);
+              addReview(rev);
+            });
+          });
+        }
+      }).catch(function(err) { 
+        console.error(err); // the Service Worker didn't install correctly
+      });
+    }
+  </script>
   <!-- End scripts -->
 
 </body>

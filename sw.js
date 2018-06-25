@@ -1,4 +1,9 @@
 //code implemented following Lab: Caching Files with Service Worker from developers.google.com
+
+importScripts('/js/idb.js');
+importScripts('/js/reviewsStore.js');
+importScripts('/js/dbhelper.js');
+
 var filesToCache = [
     '/css/styles.css',
     '/index.html'
@@ -45,6 +50,29 @@ self.addEventListener('activate', function(event) {
           })
         );
       })
+    );
+});
+
+self.addEventListener('sync', function(event) {
+    event.waitUntil(
+        reviewsStore.pending('readonly').then(function(pending) {
+            return pending.getAll();
+        }).then( revs => {
+            return Promise.all(revs.map( rev => {
+                    DBHelper.addReview(rev);
+                }).then( response => {  
+                    return response.json();
+                }).then( data => {
+                    if (data.result === 'success') {
+                        return reviewsStore.pending('readwrite').then(function(pending) {
+                            return pending.delete(rev.id);
+                        });
+                    }
+                })
+            )
+        }).catch(function(err) { 
+            console.error(err); 
+        })
     );
 });
 
