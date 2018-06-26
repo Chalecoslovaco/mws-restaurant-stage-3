@@ -100,11 +100,11 @@
               "comments": comment.value
             }
         
-            reviewsStore.pending('readwrite').then(function(pending) {
-              return pending.put(rev);
+            reviewsStore.revs('readwrite').then(function(revs) {
+              return revs.put(rev);
             }).then(function() {
               clearForm();
-              return swRegistration.sync.register('pending');
+              return swRegistration.sync.register('revs');
             }).catch(function(err) {
               console.log(err);
               addReview(rev);

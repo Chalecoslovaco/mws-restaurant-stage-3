@@ -231,7 +231,7 @@ class DBHelper {
   }
 
   static addReview(review) {
-    fetch(DBHelper.REVIEWS_URL, {
+    return fetch(DBHelper.REVIEWS_URL, {
       method: 'post',
       headers: {
         'Content-Type' : 'application/json'

@@ -55,24 +55,49 @@ self.addEventListener('activate', function(event) {
 
 self.addEventListener('sync', function(event) {
     event.waitUntil(
-        reviewsStore.pending('readonly').then(function(pending) {
-            return pending.getAll();
-        }).then( revs => {
-            return Promise.all(revs.map( rev => {
-                    DBHelper.addReview(rev);
-                }).then( response => {  
-                    return response.json();
-                }).then( data => {
-                    if (data.result === 'success') {
-                        return reviewsStore.pending('readwrite').then(function(pending) {
-                            return pending.delete(rev.id);
+        reviewsStore.revs('readonly').then(function(revs) {
+            return revs.getAll();
+          }).then( revs => {
+            if(!revs){
+                console.log('no hay datos');
+                return;
+            }
+            revs.map( rev => {
+                DBHelper.addReview(rev)
+                .then(response => {
+                    if(response.status === '201'){
+                        return reviewsStore.revs('readwrite').then(function(revs) {
+                            return revs.delete(rev.id);
                         });
                     }
                 })
-            )
-        }).catch(function(err) { 
-            console.error(err); 
-        })
+            })
+          }).catch(function(err) {
+            console.error(err);
+          })
     );
 });
 
+/*reviewsStore.revs('readonly').then(function(revs) {
+            return revs.getAll();
+        }).then( revs => {
+            if(!revs){
+                console.log('no hay datos');
+                return;
+            }
+            return Promise.all(revs.map( rev => {
+                return DBHelper.addReview(rev)
+                .then( response => {  
+                    return response.json();
+                }).then( data => {
+                    if (data.result === 'success') {
+                        return reviewsStore.revs('readwrite').then(function(revs) {
+                            return revs.delete(rev.id);
+                        });
+                    }
+                })
+            }).catch(function(err) { 
+                console.error(err); 
+            }));
+        })
+        */
