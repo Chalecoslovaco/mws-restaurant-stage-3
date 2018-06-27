@@ -48,12 +48,12 @@
       </section>
       <!-- end restaurant -->
       <!-- Beginning reviews -->
-      <section class="submit-review">
+      <section class="submit-review" role="form">
         <div class="submit-review-heading">Submit your review!</div>
-            <label for="name"><span>Name <span class="required">*</span></span><input type="text" class="input-field" id="name" name="name" value="" required /></label>
+            <label for="name"><span>Name <span class="required">*</span></span><input type="text" class="input-field" id="name" name="name" value="" required aria-required="true" /></label>
             <!--<label for="date"><span>Date <span class="required">*</span></span><input type="date" class="input-field" name="date" value="" required /></label>-->
-            <label for="rate"><span>Rate <span class="required">*</span></span><input type="number" min="1" max="5" class="input-field" id="rate" name="rate" value="" required /></label>
-            <label for="comment"><span>Comment <span class="required">*</span></span><textarea id="comment" name="comment" class="textarea-field" required></textarea></label>
+            <label for="rate"><span>Rate <span class="required">*</span></span><input type="number" min="1" max="5" class="input-field" id="rate" name="rate" value="" required aria-required="true" /></label>
+            <label for="comment"><span>Comment <span class="required">*</span></span><textarea id="comment" name="comment" class="textarea-field" aria-multiline="true" required aria-required="true"></textarea></label>
             <label><span>&nbsp;</span><input type="submit" value="Submit" id="submitButton" name="submitButton" /></label>
       </section>
       <section id="reviews-container">

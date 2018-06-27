@@ -66,6 +66,7 @@ self.addEventListener('sync', function(event) {
                 revs.map( rev => {
                     DBHelper.addReview(rev)
                     .then(response => {
+                        console.log('posted revs to server');
                         if(response.status === '201'){
                             return reviewsStore.revs('readwrite').then(function(revs) {
                                 return revs.delete(rev.id);
@@ -73,6 +74,8 @@ self.addEventListener('sync', function(event) {
                         }
                     })
                 })
+            }).then(() => {
+                console.log('sync ok');
             }).catch(function(err) {
                 console.error(err);
             })
