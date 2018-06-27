@@ -16,7 +16,7 @@ class DBHelper {
   }*/
   static get DATABASE_URL() {
     const port = 1337; // Change this to your server port
-    return `http://localhost:${port}/restaurants`;
+    return `http://localhost:${port}/restaurants/`;
   }
 
   static get REVIEWS_URL() {
@@ -251,6 +251,10 @@ class DBHelper {
           else
             fillReviewsHTML(null);
         });
+  }
+
+  static submitFavRestaurant(id, flag){
+    fetch(`${DBHelper.DATABASE_URL}${id}/?is_favorite=${flag}`, {method: 'put'})
   }
 
 }

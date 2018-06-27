@@ -186,3 +186,11 @@ clearForm = () => {
   document.querySelector('#rate').value = '';
   document.querySelector('#comment').value = '';
 }
+
+markFavourite = (favStar) => {
+  let id = getParameterByName('id');
+  let name = 
+  favStar.classList.toggle('checked');
+  let flag = favStar.classList.contains('checked');
+  DBHelper.submitFavRestaurant(id, flag);
+}

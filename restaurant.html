@@ -8,6 +8,7 @@
     <link rel="manifest" href="/manifest.json">
   <!-- Normalize.css for better cross-browser consistency -->
   <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" media="none" onload="if(media!='all')media='all'"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Main CSS file -->
   <link rel="stylesheet" href="dist/css/index.css" type="text/css" media="none" onload="if(media!='all')media='all'">
   <link rel="stylesheet" href="dist/css/details.css" type="text/css" media="none" onload="if(media!='all')media='all'">
@@ -49,7 +50,7 @@
       <!-- end restaurant -->
       <!-- Beginning reviews -->
       <section class="submit-review" role="form">
-        <div class="submit-review-heading">Submit your review!</div>
+        <div class="submit-review-heading">Submit your review! - Check the star to mark as favourite! <span id="fav-star" class="fa fa-star" onclick="markFavourite(this)"></span></div>
             <label for="name"><span>Name <span class="required">*</span></span><input type="text" class="input-field" id="name" name="name" value="" required aria-required="true" /></label>
             <!--<label for="date"><span>Date <span class="required">*</span></span><input type="date" class="input-field" name="date" value="" required /></label>-->
             <label for="rate"><span>Rate <span class="required">*</span></span><input type="number" min="1" max="5" class="input-field" id="rate" name="rate" value="" required aria-required="true" /></label>
