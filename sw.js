@@ -54,28 +54,30 @@ self.addEventListener('activate', function(event) {
 });
 
 self.addEventListener('sync', function(event) {
-    event.waitUntil(
-        reviewsStore.revs('readonly').then(function(revs) {
-            return revs.getAll();
-          }).then( revs => {
-            if(!revs){
-                console.log('no hay datos');
-                return;
-            }
-            revs.map( rev => {
-                DBHelper.addReview(rev)
-                .then(response => {
-                    if(response.status === '201'){
-                        return reviewsStore.revs('readwrite').then(function(revs) {
-                            return revs.delete(rev.id);
-                        });
-                    }
+    if (event.tag === 'penginRevs') {
+        event.waitUntil(
+            reviewsStore.revs('readonly').then(function(revs) {
+                return revs.getAll();
+            }).then( revs => {
+                if(!revs){
+                    console.log('no hay datos');
+                    return;
+                }
+                revs.map( rev => {
+                    DBHelper.addReview(rev)
+                    .then(response => {
+                        if(response.status === '201'){
+                            return reviewsStore.revs('readwrite').then(function(revs) {
+                                return revs.delete(rev.id);
+                            });
+                        }
+                    })
                 })
+            }).catch(function(err) {
+                console.error(err);
             })
-          }).catch(function(err) {
-            console.error(err);
-          })
-    );
+        );
+    }
 });
 
 /*reviewsStore.revs('readonly').then(function(revs) {

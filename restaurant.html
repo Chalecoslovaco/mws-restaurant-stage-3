@@ -104,7 +104,7 @@
               return revs.put(rev);
             }).then(function() {
               clearForm();
-              return swRegistration.sync.register('revs');
+              return swRegistration.sync.register('penginRevs');
             }).catch(function(err) {
               console.log(err);
               addReview(rev);
