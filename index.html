@@ -8,7 +8,6 @@
   <link rel="manifest" href="/manifest.json">
   <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" media="none" onload="if(media!='all')media='all'" />
   <link rel="stylesheet" href="dist/css/index.css" media="none" onload="if(media!='all')media='all'">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
   <title>Restaurant Reviews</title>
 </head>
 
@@ -63,6 +62,11 @@
       });
     }
   </script>
+  <script type='text/javascript'>
+    //<![CDATA[ 
+    function loadCSS(e, t, n) { "use strict"; var i = window.document.createElement("link"); var o = t || window.document.getElementsByTagName("script")[0]; i.rel = "stylesheet"; i.href = e; i.media = "only x"; o.parentNode.insertBefore(i, o); setTimeout(function () { i.media = n || "all" }) }loadCSS("https://use.fontawesome.com/releases/v5.1.0/css/all.css");
+    //]]> 
+    </script>
   <!--<script>
     function lazyLoad(){
       var lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
