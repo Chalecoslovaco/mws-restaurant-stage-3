@@ -2,11 +2,11 @@ function isOnline() {
     var connectionStatus = document.getElementById('connectionStatus');
     if (navigator.onLine){
       connectionStatus.innerHTML = 'You are currently online!';
-      connectionStatus.style = "color:green;";
+      connectionStatus.style = "color:green; font-weight:bolder;";
     }
     else{
-      connectionStatus.innerHTML = 'You are currently offline. Any requests made will be queued and synced as soon as you are connected again.';
-      connectionStatus.style = "color:red;";
+      connectionStatus.innerHTML = 'Offline! Requests will be synced when online again.';
+      connectionStatus.style = "color:red; font-weight:bolder;";
     }
   }
   window.addEventListener('online', isOnline);
