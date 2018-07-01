@@ -56,24 +56,14 @@ self.addEventListener('activate', function(event) {
 self.addEventListener('sync', function(event) {
     if (event.tag === 'penginRevs') {
         event.waitUntil(
-            reviewsStore.revs('readonly').then(function(revs) {
-                return revs.getAll();
+            reviewsStore.revsidb('readonly').then(function(revsidb) {
+                return revsidb.getAll();
             }).then( revs => {
                 if(!revs){
                     console.log('no hay datos');
                     return;
                 }
-                revs.map( rev => {
-                    DBHelper.addReview(rev)
-                    .then(response => {
-                        console.log('posted revs to server');
-                        if(response.status === '201'){
-                            return reviewsStore.revs('readwrite').then(function(revs) {
-                                return revs.delete(rev.id);
-                            });
-                        }
-                    })
-                })
+                DBHelper.treatPendingRevs(revs);
             }).then(() => {
                 console.log('sync ok');
             }).catch(function(err) {
@@ -82,27 +72,3 @@ self.addEventListener('sync', function(event) {
         );
     }
 });
-
-/*reviewsStore.revs('readonly').then(function(revs) {
-            return revs.getAll();
-        }).then( revs => {
-            if(!revs){
-                console.log('no hay datos');
-                return;
-            }
-            return Promise.all(revs.map( rev => {
-                return DBHelper.addReview(rev)
-                .then( response => {  
-                    return response.json();
-                }).then( data => {
-                    if (data.result === 'success') {
-                        return reviewsStore.revs('readwrite').then(function(revs) {
-                            return revs.delete(rev.id);
-                        });
-                    }
-                })
-            }).catch(function(err) { 
-                console.error(err); 
-            }));
-        })
-        */

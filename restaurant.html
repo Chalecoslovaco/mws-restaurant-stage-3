@@ -107,14 +107,14 @@
               "comments": comment.value
             }
         
-            reviewsStore.revs('readwrite').then(function(revs) {
-              return revs.put(rev);
+            reviewsStore.revsidb('readwrite').then(function(revsidb) {
+              return revsidb.put(rev);
             }).then(function() {
               clearForm();
               return swRegistration.sync.register('penginRevs');
             }).catch(function(err) {
               console.log(err);
-              addReview(rev);
+              DBHelper.addReview(rev);
             });
           });
         }

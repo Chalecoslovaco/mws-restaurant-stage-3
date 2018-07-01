@@ -257,4 +257,24 @@ class DBHelper {
     fetch(`${DBHelper.DATABASE_URL}${id}/?is_favorite=${flag}`, {method: 'put'})
   }
 
+  static treatPendingRevs(revs) {
+    revs.map( rev => {
+      fetch(DBHelper.REVIEWS_URL, {
+        method: 'post',
+        headers: {
+          'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify(rev)
+      })
+      .then(response => {
+          console.log('posted revs to server');
+          if(response.status === 201){
+              return reviewsStore.revsidb('readwrite').then(function(revsidb) {
+                  return revsidb.delete(rev.id);
+              });
+          }
+      })
+    })
+  }
+
 }
