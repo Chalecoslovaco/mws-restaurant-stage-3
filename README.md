@@ -28,14 +28,14 @@ Now that you’ve connected your application to an external database, it’s tim
 - Accessibility score should be at 90 or better.
 
 ## **Getting Started**
-For the **Local Development API Server** please follow the instructions in: [https://github.com/udacity/mws-restaurant-stage-3](git clone server/https://github.com/udacity/mws-restaurant-stage-3)
+For the **Local Development API Server** please follow the instructions in: https://github.com/udacity/mws-restaurant-stage-3
 
 Then as Admin:
 ``` 
-git clone https://github.com/udacity/mws-restaurant-stage-3
+git clone https://github.com/Chalecoslovaco/mws-restaurant-stage-3.git
 cd mws-restaurant-stage-3
-npm install -g live-server` (As **Admin**)
-live -server
+npm install -g live-server
+live-server
 ```
 
 Go to chrome and localhost:8080
