@@ -4,6 +4,7 @@
 
 ### Stage 3 of the project for the [MWS-Nanodegree](https://www.udacity.com/course/mobile-web-specialist-nanodegree--nd024)-Scholarship by Udacity and Google
 [mws-restaurant-stage-2 code](https://github.com/Chalecoslovaco/mws-restaurant-stage-2)
+
 [mws-restaurant-stage-1 code](https://github.com/Chalecoslovaco/mws-restaurant-stage-1)
 
 ## **Project Overview**
@@ -29,11 +30,13 @@ Now that you’ve connected your application to an external database, it’s tim
 ## **Getting Started**
 For the **Local Development API Server** please follow the instructions in: [https://github.com/udacity/mws-restaurant-stage-3](git clone server/https://github.com/udacity/mws-restaurant-stage-3)
 
-Then:
-`git clone https://github.com/udacity/mws-restaurant-stage-3`
-`cd mws-restaurant-stage-3`
-`npm install -g live-server` (As **Admin**)
-`live -server`
+Then as Admin:
+``` 
+git clone https://github.com/udacity/mws-restaurant-stage-3
+cd mws-restaurant-stage-3
+npm install -g live-server` (As **Admin**)
+live -server
+```
 
 Go to chrome and localhost:8080
 
