@@ -1,149 +1,40 @@
-#mws-restaurant-stage-3 - Project Overview
+# mws-restaurant-stage-3
 
-For the Restaurant Reviews projects, you will incrementally convert a static webpage to a mobile-ready web application. In Stage Three, you will take the connected application you yu built in Stage One and Stage Two and add additional functionality. You will add a form to allow users to create their own reviews. If the app is offline, your form will defer updating to the remote database until a connection is established. Finally,you’ll work to optimize your site to meet even stricter performance benchmarks than the previous project, and test again using Lighthouse.
+---
 
-# Local Development API Server
-## Usage
-#### Get Restaurants
-```
-curl "http://localhost:1337/restaurants"
-```
-#### Get Restaurants by id
-````
-curl "http://localhost:1337/restaurants/{3}"
-````
+### Stage 3 of the project for the [MWS-Nanodegree](https://www.udacity.com/course/mobile-web-specialist-nanodegree--nd024)-Scholarship by Udacity and Google
+[mws-restaurant-stage-2 code](https://github.com/Chalecoslovaco/mws-restaurant-stage-2)
+[mws-restaurant-stage-1 code](https://github.com/Chalecoslovaco/mws-restaurant-stage-1)
 
-## Architecture
-Local server
-- Node.js
-- Sails.js
+## **Project Overview**
+For the Restaurant Reviews projects, you will incrementally convert a static webpage to a mobile-ready web application. In Stage Three, you will take the connected application you yu built in Stage One and Stage Two and add additional functionality. You will add a form to allow users to create their own reviews. If the app is offline, your form will defer updating to the remote database until a connection is established. Finally, you’ll work to optimize your site to meet even stricter performance benchmarks than the previous project, and test again using Lighthouse.
 
-## Contributors
+## **Specification**
+You will be provided code for an updated [Node development server](https://github.com/udacity/mws-restaurant-stage-3) and a README for getting the server up and running locally on your computer. The README will also contain the API you will need to make JSON requests to the server. Once you have the server up, you will begin the work of improving your Stage Two project code.
 
-- [Brandy Lee Camacho - Technical Project Manager](mailto:brandy.camacho@udacity.com)
-- [David Harris - Web Services Lead](mailto:david.harris@udacity.com)
-- [Omar Albeik - Frontend engineer](mailto:omaralbeik@gmail.com)
+This server is different than the server from stage 2, and has added capabilities. Make sure you are using the Stage Three server as you develop your project. Connecting to this server is the same as with Stage Two, however.
 
-## Getting Started
+You can find the documentation for the new server in the README file for the server.
 
-### Development local API Server
-_Location of server = /server_
-Server depends on [node.js LTS Version: v6.11.2 ](https://nodejs.org/en/download/), [npm](https://www.npmjs.com/get-npm), and [sails.js](http://sailsjs.com/)
-Please make sure you have these installed before proceeding forward.
+Now that you’ve connected your application to an external database, it’s time to begin adding new features to your app.
 
-Great, you are ready to proceed forward; awesome!
+## **Requirements**
+1. Add a form to allow users to create their own reviews: In previous versions of the application, users could only read reviews from the database. You will need to add a form that adds new reviews to the database. The form should include the user’s name, the restaurant id, the user’s rating, and whatever comments they have. Submitting the form should update the server when the user is online.
+1. Add functionality to defer updates until the user is connected: If the user is not online, the app should notify the user that they are not connected, and save the users' data to submit automatically when re-connected. In this case, the review should be deferred and sent to the server when connection is re-established (but the review should still be visible locally even before it gets to the server.)
+1. Meet the new performance requirements: In addition to adding new features, the performance targets you met in Stage Two have tightened. Using Lighthouse, you’ll need to measure your site performance against the new targets.
+- Progressive Web App score should be at 90 or better.
+- Performance score should be at 90 or better.
+- Accessibility score should be at 90 or better.
 
-Let's start with running commands in your terminal, known as command line interface (CLI)
+## **Getting Started**
+For the **Local Development API Server** please follow the instructions in: [https://github.com/udacity/mws-restaurant-stage-3](git clone server/https://github.com/udacity/mws-restaurant-stage-3)
 
-###### Install project dependancies
-```Install project dependancies
-# npm i
-```
-###### Install Sails.js globally
-```Install sails global
-# npm i sails -g
-```
-###### Start the server
-```Start server
-# node server
-```
-### You should now have access to your API server environment
-debug: Environment : development
-debug: Port        : 1337
+Then:
+`git clone https://github.com/udacity/mws-restaurant-stage-3`
+`cd mws-restaurant-stage-3`
+`npm install -g live-server` (As **Admin**)
+`live -server`
 
+Go to chrome and localhost:8080
 
-## Endpoints
-
-### GET Endpoints
-
-#### Get all restaurants
-```
-http://localhost:1337/restaurants/
-```
-
-#### Get favorite restaurants
-```
-http://localhost:1337/restaurants/?is_favorite=true
-```
-
-#### Get a restaurant by id
-```
-http://localhost:1337/restaurants/<restaurant_id>
-```
-
-#### Get all reviews for a restaurant
-```
-http://localhost:1337/reviews/?restaurant_id=<restaurant_id>
-```
-
-#### Get all restaurant reviews
-```
-http://localhost:1337/reviews/
-```
-
-#### Get a restaurant review by id
-```
-http://localhost:1337/reviews/<review_id>
-```
-
-#### Get all reviews for a restaurant
-```
-http://localhost:1337/reviews/?restaurant_id=<restaurant_id>
-```
-
-
-### POST Endpoints
-
-#### Create a new restaurant review
-```
-http://localhost:1337/reviews/
-```
-
-###### Parameters
-```
-{
-    "restaurant_id": <restaurant_id>,
-    "name": <reviewer_name>,
-    "rating": <rating>,
-    "comments": <comment_text>
-}
-```
-
-
-### PUT Endpoints
-
-#### Favorite a restaurant
-```
-http://localhost:1337/restaurants/<restaurant_id>/?is_favorite=true
-```
-
-#### Unfavorite a restaurant
-```
-http://localhost:1337/restaurants/<restaurant_id>/?is_favorite=false
-```
-
-#### Update a restaurant review
-```
-http://localhost:1337/reviews/<review_id>
-```
-
-###### Parameters
-```
-{
-    "name": <reviewer_name>,
-    "rating": <rating>,
-    "comments": <comment_text>
-}
-```
-
-
-### DELETE Endpoints
-
-#### Delete a restaurant review
-```
-http://localhost:1337/reviews/<review_id>
-```
-
-
-If you find a bug in the source code or a mistake in the documentation, you can help us by
-submitting an issue to our [Waffle Dashboard](https://waffle.io/udacity/mwnd-issues). Even better you can submit a Pull Request with a fix :)
+![mws-3img](https://i.imgur.com/4rFyLFS.png)
